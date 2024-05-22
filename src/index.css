@@ -1,0 +1,13 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
+body {
+  margin: 0;
+  font-family: 'nanumgothic';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
