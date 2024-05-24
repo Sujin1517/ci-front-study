@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import BoardComponent from "../component/BoardComponent";
+import Loading from "../component/Loading";
 
 function Board() {
+    const [onLoading, setOnLoading] = useState(true);
     const [BoardData, setBoardData] = useState();
     // const [myAddr, setMyAddr] = useState("");
     // const getIpAddr = async () => {
@@ -16,6 +18,7 @@ function Board() {
             const response = await axios.get("http://34.41.112.84:8080/api/boards");
             console.log(response.data);
             setBoardData(response.data);
+            setOnLoading(false);
         } catch (error) {
             console.log(error);
             alert("불러오기 에러!");
@@ -25,6 +28,7 @@ function Board() {
     const sendBoard = async (e) => {
         e.preventDefault();
         try {
+            setOnLoading(true);
             const response = await axios.post(
                 "http://34.41.112.84:8080/api/boards",
                 {
@@ -34,6 +38,7 @@ function Board() {
             );
             console.log(response);
             getBoards();
+            document.getElementById("input_text").value = "";
         } catch (error) {
             console.log(error);
             alert("전송 에러!");
@@ -42,6 +47,7 @@ function Board() {
 
     const deleteBoard = async (id) => {
         try {
+            setOnLoading(false);
             const response = await axios.delete("http://34.41.112.84:8080/api/boards/" + id);
             console.log(response.data);
             getBoards();
@@ -58,7 +64,7 @@ function Board() {
     }, [])
 
     return (
-        <div style={{width:"100svw", display:"flex", flexDirection:"column", justifyContent:"center", alignItems: "center"}}>
+        <div style={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems: "center"}}>
             <div style={{width:"300px", marginTop:"20px", border:"1px solid Silver", borderRadius:"3px", padding:"15px"}}>
                 <form
                     style={{display:"flex", flexDirection:"column", gap:"10px"}}
@@ -81,10 +87,11 @@ function Board() {
             </div>
 
             <div style={{marginTop:"30px", display:"flex", flexDirection:"column", gap:"5px"}}>
-                {BoardData?.map((e) => (
+                {BoardData?.slice(0).reverse().map((e) => (
                     <BoardComponent id={e.id} name={e.name} text={e.text} onClick={() => deleteBoard(e.id)} />
                 ))}
             </div>
+            {onLoading? <Loading /> : ""}
         </div>
     );
 }
