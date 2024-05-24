@@ -4,6 +4,12 @@ import BoardComponent from "../component/BoardComponent";
 
 function Board() {
     const [BoardData, setBoardData] = useState();
+    // const [myAddr, setMyAddr] = useState("");
+    // const getIpAddr = async () => {
+    //     const addr = await axios.get('https://jsonip.com');
+    //     console.log(addr.data);
+    //     setMyAddr(addr.data.ip);
+    // }
 
     const getBoards = async () => {
         try {
@@ -46,8 +52,9 @@ function Board() {
     }
 
     useEffect(() => {
-        getBoards();
-        setInterval(getBoards, 10000);
+        getBoards(); 
+        // getIpAddr();
+        // setInterval(getBoards, 10000);
     }, [])
 
     return (
@@ -67,7 +74,7 @@ function Board() {
                     </div>
                     <input
                         type="submit"
-                        style={{height:"30px", backgroundColor:"#fff", borderRadius:"3px"}}
+                        style={{height:"30px", backgroundColor:"#fff", borderRadius:"3px", cursor:"pointer"}}
                         value={"발☆사"}
                     />
                 </form>
