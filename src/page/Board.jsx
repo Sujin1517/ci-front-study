@@ -15,7 +15,7 @@ function Board() {
 
     const getBoards = async () => {
         try {
-            const response = await axios.get("http://35.238.126.52:8080/api/boards");
+            const response = await axios.get("/api/boards");
             console.log(response.data);
             setBoardData(response.data);
             setOnLoading(false);
@@ -30,7 +30,7 @@ function Board() {
         try {
             setOnLoading(true);
             const response = await axios.post(
-                "http://35.238.126.52:8080/api/boards",
+                "/api/boards",
                 {
                     name: document.getElementById("input_name").value,
                     text: document.getElementById("input_text").value,
@@ -48,7 +48,7 @@ function Board() {
     const deleteBoard = async (id) => {
         try {
             setOnLoading(false);
-            const response = await axios.delete("http://35.238.126.52:8080/api/boards/" + id);
+            const response = await axios.delete("/api/boards/" + id);
             console.log(response.data);
             getBoards();
         } catch (error) {
