@@ -47,4 +47,4 @@ jobs:
         script: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
           docker rm -f ${{ secrets.DOCKER_REPOSITORY }}
-          docker run --name ${{ secrets.DOCKER_REPOSITORY }} -p 8080:8080 -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
+          docker run --name ${{ secrets.DOCKER_REPOSITORY }} -p 80:80 -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
