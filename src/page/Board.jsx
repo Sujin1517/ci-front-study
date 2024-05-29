@@ -64,7 +64,7 @@ function Board() {
     }, [])
 
     return (
-        <div style={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems: "center"}}>
+        <div style={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems: "center", paddingBottom:"30px"}}>
             <div style={{width:"300px", marginTop:"20px", border:"1px solid Silver", borderRadius:"3px", padding:"15px"}}>
                 <form
                     style={{display:"flex", flexDirection:"column", gap:"10px"}}

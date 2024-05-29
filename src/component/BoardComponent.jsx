@@ -17,14 +17,14 @@ function BoardComponent(props) {
         <div>
             {props.text}
         </div>
-        <div
+        {/* <div
             onClick={props.onClick}
             style={{
                 position:"absolute", right:"4px", top:"6px", 
                 color:"gray", textAlign:"center", width:"20px", height:"20px",
                 cursor:"pointer"
             }}
-        >x</div>
+        >x</div> */}
     </div>
   );
 }
