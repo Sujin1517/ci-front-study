@@ -6,7 +6,7 @@ import Loading from "../component/Loading";
 function Board() {
     const [onLoading, setOnLoading] = useState(true);
     const [BoardData, setBoardData] = useState();
-    const ADDR = "http://localhost";
+    // const ADDR = "http://localhost";
     // const [myAddr, setMyAddr] = useState("");
     // const getIpAddr = async () => {
     //     const addr = await axios.get('https://jsonip.com');
@@ -23,8 +23,8 @@ function Board() {
 
     const getBoards = async () => {
         try {
-            // const response = await axios.get("/api/boards");
-            const response = await axios.get(ADDR+":8080/api/boards");
+            const response = await    axios.get("/api/boards");
+            // const response = await axios.get(ADDR+":8080/api/boards");
             // console.log(response.data);
             setBoardData(response.data);
             loadingEnd();
@@ -39,8 +39,8 @@ function Board() {
         try {
             loadingStart();
             const response = await axios.post(
-                // "/api/boards",
-                ADDR+":8080/api/boards",
+                "/api/boards",
+                // ADDR+":8080/api/boards",
                 {
                     name: document.getElementById("input_name").value,
                     text: document.getElementById("input_text").value,
@@ -58,8 +58,8 @@ function Board() {
     const deleteBoard = async (id) => {
         try {
             loadingEnd();
-            // const response = await axios.delete("/api/boards/" + id);
-            const response = await axios.get(ADDR+":8080/api/boards"+id);
+            const response = await axios.delete("/api/boards/" + id);
+            // const response = await axios.get(ADDR+":8080/api/boards"+id);
             // console.log(response.data);
             getBoards();
         } catch (error) {

@@ -9,9 +9,9 @@ function BoardComponent(props) {
 
     const getComments = async () => {
         try {
-            // const response = await axios.get("/api/boards");
-            const response = await axios.get(ADDR+":8081/api/comments/"+props.id);
-            console.log(response.data);
+            const response = await axios.get("/api/comments/"+props.id);
+            // const response = await axios.get(ADDR+":8081/api/comments/"+props.id);
+            // console.log(response.data);
             setCommentData(response.data);
             props.loadingEnd();
         } catch (error) {
@@ -25,8 +25,8 @@ function BoardComponent(props) {
         try {
             props.loadingStart();
             const response = await axios.post(
-                // "/api/comments",
-                ADDR+":8081/api/comments",
+                "/api/comments",
+                // ADDR+":8081/api/comments",
                 {
                     boardId: e.boardId,
                     content: e.content
@@ -44,8 +44,8 @@ function BoardComponent(props) {
     const deleteComment = async (e) => {
         try {
             props.loadingStart();
-            // const response = await axios.get("/api/boards");
-            const response = await axios.delete(ADDR+":8081/api/comments/"+e);
+            const response = await axios.get("/api/comments/"+e);
+            // const response = await axios.delete(ADDR+":8081/api/comments/"+e);
             // console.log(response.data);
             getComments();
         } catch (error) {
