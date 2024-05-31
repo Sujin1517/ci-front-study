@@ -24,7 +24,7 @@ jobs:
       run: npm install
 
     - name: npm build
-      run: npm run build
+      run: CI='false' npm run build
     
     - name: Docker Login
       uses: docker/login-action@v3.2.0
@@ -47,4 +47,4 @@ jobs:
         script: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
           docker rm -f ${{ secrets.DOCKER_REPOSITORY }}
-          docker run --name ${{ secrets.DOCKER_REPOSITORY }} --network ${{ secrets.DOCKER_NETWORK }} -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
+          docker run --name ${{ secrets.DOCKER_REPOSITORY }} --network ${{ secrets.DOCKER_NETWORK }} -p 80:80 -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
