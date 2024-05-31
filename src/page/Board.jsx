@@ -6,7 +6,7 @@ import Loading from "../component/Loading";
 function Board() {
     const [onLoading, setOnLoading] = useState(true);
     const [BoardData, setBoardData] = useState();
-    // const ADDR = "http://localhost";
+    // const ADDR = "http://34.172.209.173";
     // const [myAddr, setMyAddr] = useState("");
     // const getIpAddr = async () => {
     //     const addr = await axios.get('https://jsonip.com');

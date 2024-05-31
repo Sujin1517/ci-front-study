@@ -5,7 +5,7 @@ import axios from "axios";
 function BoardComponent(props) {
     const [ShowComment, setShowComment] = useState(false);
     const [commentData, setCommentData] = useState();
-    const ADDR = "http://localhost";
+    // const ADDR = "http://34.172.209.173";
 
     const getComments = async () => {
         try {
