@@ -6,6 +6,7 @@ import Loading from "../component/Loading";
 function Board() {
     const [onLoading, setOnLoading] = useState(true);
     const [BoardData, setBoardData] = useState();
+    // const ADDR = "http://34.172.209.173";
     // const [myAddr, setMyAddr] = useState("");
     // const getIpAddr = async () => {
     //     const addr = await axios.get('https://jsonip.com');
@@ -13,12 +14,20 @@ function Board() {
     //     setMyAddr(addr.data.ip);
     // }
 
+    const loadingStart = () => {
+        setOnLoading(true);
+    }
+    const loadingEnd = () => {
+        setOnLoading(false);
+    }
+
     const getBoards = async () => {
         try {
-            const response = await axios.get("/api/boards");
+            const response = await    axios.get("/api/boards");
+            // const response = await axios.get(ADDR+":8080/api/boards");
             console.log(response.data);
             setBoardData(response.data);
-            setOnLoading(false);
+            loadingEnd();
         } catch (error) {
             console.log(error);
             alert("불러오기 에러!");
@@ -28,9 +37,10 @@ function Board() {
     const sendBoard = async (e) => {
         e.preventDefault();
         try {
-            setOnLoading(true);
+            loadingStart();
             const response = await axios.post(
                 "/api/boards",
+                // ADDR+":8080/api/boards",
                 {
                     name: document.getElementById("input_name").value,
                     text: document.getElementById("input_text").value,
@@ -47,8 +57,9 @@ function Board() {
 
     const deleteBoard = async (id) => {
         try {
-            setOnLoading(false);
+            loadingEnd();
             const response = await axios.delete("/api/boards/" + id);
+            // const response = await axios.get(ADDR+":8080/api/boards"+id);
             console.log(response.data);
             getBoards();
         } catch (error) {
@@ -88,8 +99,15 @@ function Board() {
             </div>
 
             <div style={{marginTop:"30px", display:"flex", flexDirection:"column", gap:"5px"}}>
-                {BoardData?.slice(0).reverse().map((e) => (
-                    <BoardComponent id={e.id} name={e.name} text={e.text} onClick={() => deleteBoard(e.id)} />
+                {BoardData?.map((e) => (
+                    <BoardComponent 
+                        id={e.id}
+                        name={e.name}
+                        text={e.text}
+                        loadingStart={loadingStart}
+                        loadingEnd={loadingEnd}
+                        onClick={() => deleteBoard(e.id)}
+                    />
                 ))}
             </div>
             {onLoading? <Loading /> : ""}
