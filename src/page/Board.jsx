@@ -25,7 +25,7 @@ function Board() {
         try {
             const response = await    axios.get("/api/boards");
             // const response = await axios.get(ADDR+":8080/api/boards");
-            // console.log(response.data);
+            console.log(response.data);
             setBoardData(response.data);
             loadingEnd();
         } catch (error) {
@@ -46,7 +46,7 @@ function Board() {
                     text: document.getElementById("input_text").value,
                 }
             );
-            // console.log(response);
+            console.log(response);
             getBoards();
             document.getElementById("input_text").value = "";
         } catch (error) {
@@ -60,7 +60,7 @@ function Board() {
             loadingEnd();
             const response = await axios.delete("/api/boards/" + id);
             // const response = await axios.get(ADDR+":8080/api/boards"+id);
-            // console.log(response.data);
+            console.log(response.data);
             getBoards();
         } catch (error) {
             console.log(error);

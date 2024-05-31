@@ -11,7 +11,7 @@ function BoardComponent(props) {
         try {
             const response = await axios.get("/api/comments/"+props.id);
             // const response = await axios.get(ADDR+":8081/api/comments/"+props.id);
-            // console.log(response.data);
+            console.log(response.data);
             setCommentData(response.data);
             props.loadingEnd();
         } catch (error) {
@@ -32,7 +32,7 @@ function BoardComponent(props) {
                     content: e.content
                 }
             );
-            // console.log(response);
+            console.log(response);
             getComments();
             document.getElementById("input_comment_"+props.id).value = "";
         } catch (error) {
@@ -46,7 +46,7 @@ function BoardComponent(props) {
             props.loadingStart();
             const response = await axios.get("/api/comments/"+e);
             // const response = await axios.delete(ADDR+":8081/api/comments/"+e);
-            // console.log(response.data);
+            console.log(response.data);
             getComments();
         } catch (error) {
             console.log(error);
