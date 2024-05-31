@@ -23,7 +23,7 @@ function Board() {
 
     const getBoards = async () => {
         try {
-            const response = await    axios.get("/api/boards");
+            const response = await axios.get("/api/boards");
             // const response = await axios.get(ADDR+":8080/api/boards");
             console.log(response.data);
             setBoardData(response.data);
@@ -58,7 +58,7 @@ function Board() {
     const deleteBoard = async (id) => {
         try {
             loadingEnd();
-            const response = await axios.delete("/api/boards/" + id);
+            const response = await axios.delete("/api/boards" + id);
             // const response = await axios.get(ADDR+":8080/api/boards"+id);
             console.log(response.data);
             getBoards();
