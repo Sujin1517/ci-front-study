@@ -59,6 +59,7 @@ function Board() {
 
     useEffect(() => {
         getBoards(); 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         // getIpAddr();
         // setInterval(getBoards, 10000);
     }, [])
